@@ -11,15 +11,12 @@ public class SalaryInfo {
     private static final int HOURS_PART_INDEX = 2;
     private static final int RATE_PART_INDEX = 3;
 
-
     public String getSalaryInfo(String[] names, String[] data, String dateFrom, String dateTo) {
-
         LocalDate from = LocalDate.parse(dateFrom.trim(), FORMAT);
         LocalDate to = LocalDate.parse(dateTo.trim(), FORMAT);
         int[] totalSalary = new int[names.length];
 
         for (String record : data) {
-
             String[] parts = record.split(" ");
             LocalDate recordDate = LocalDate.parse(parts[DATE_PART_INDEX], FORMAT);
             String name = parts[NAME_PART_INDEX];
@@ -27,7 +24,6 @@ public class SalaryInfo {
             int rate = Integer.parseInt(parts[RATE_PART_INDEX]);
 
             if (!recordDate.isBefore(from) && !recordDate.isAfter(to)) {
-
                 for (int i = 0; i < names.length; i++) {
                     if (names[i].equals(name)) {
                         totalSalary[i] += hours * rate;
