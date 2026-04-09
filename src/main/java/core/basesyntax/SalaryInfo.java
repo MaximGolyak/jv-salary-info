@@ -4,18 +4,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class SalaryInfo {
+    private static final DateTimeFormatter FORMAT =
+            DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
     public String getSalaryInfo(String[] names, String[] data, String dateFrom, String dateTo) {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-        LocalDate from = LocalDate.parse(dateFrom.trim(), format);
-        LocalDate to = LocalDate.parse(dateTo.trim(), format);
-
+        LocalDate from = LocalDate.parse(dateFrom.trim(), FORMAT);
+        LocalDate to = LocalDate.parse(dateTo.trim(), FORMAT);
         int[] totalSalary = new int[names.length];
 
         for (String record : data) {
 
             String[] parts = record.split(" ");
-            LocalDate recordDate = LocalDate.parse(parts[0], format);
+            LocalDate recordDate = LocalDate.parse(parts[0], FORMAT);
             String name = parts[1];
             int hours = Integer.parseInt(parts[2]);
             int rate = Integer.parseInt(parts[3]);
